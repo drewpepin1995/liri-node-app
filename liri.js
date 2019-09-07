@@ -101,3 +101,18 @@ function moviesThis() {
 
 
 };
+
+function concertThis() {
+
+    let artist = process.argv.slice(3, process.argv.length).join(" ");
+    let queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+
+    axios.get(queryURL)
+        .then(function(response){
+            console.log(response.data.datetime);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+
+};
