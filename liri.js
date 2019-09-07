@@ -7,6 +7,7 @@ let spotify = new Spotify({
 });
 let axios = require('axios');
 let liriReturn = process.argv[2];
+var moment = require('moment');
 
 switch (liriReturn) {
     case "spotify-this-song":
@@ -109,7 +110,11 @@ function concertThis() {
 
     axios.get(queryURL)
         .then(function(response){
-            console.log(response.data.datetime);
+           for (var i=0; i<response.data.length; i++) {
+               console.log("Concert Time: " + moment(response.data[i].datetime, "YYYY-MM-DDTHH:mm:ss").format('MM/DD/YYYY'));
+               console.log("Concert Location: " + response.data[i].venue.city + ", " + response.data[i].venue.region);
+               console.log("Concert Venue: " + response.data[i].venue.name);
+           }
         })
         .catch(function(error){
             console.log(error);
