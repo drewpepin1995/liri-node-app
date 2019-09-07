@@ -8,6 +8,7 @@ let spotify = new Spotify({
 let axios = require('axios');
 let liriReturn = process.argv[2];
 var moment = require('moment');
+var fs = require('fs');
 
 switch (liriReturn) {
     case "spotify-this-song":
@@ -34,7 +35,7 @@ switch (liriReturn) {
 
 };
 
-function spotifyThis(trackName) {
+function spotifyThis(mediaName) {
     let trackName = process.argv.slice(3, process.argv.length).join(" ");
     spotify.search({
         type: 'track',
@@ -48,6 +49,8 @@ function spotifyThis(trackName) {
                 console.log("Song Name: " + number.name);
                 console.log("Spotify Preview: " + number.preview_url);
                 console.log("Album: " + number.album.name);
+                console.log("-----------------------------------------------------------------------------------------")
+
             })
         })
         .catch(function (error) {
@@ -114,6 +117,7 @@ function concertThis() {
                console.log("Concert Time: " + moment(response.data[i].datetime, "YYYY-MM-DDTHH:mm:ss").format('MM/DD/YYYY'));
                console.log("Concert Location: " + response.data[i].venue.city + ", " + response.data[i].venue.region);
                console.log("Concert Venue: " + response.data[i].venue.name);
+               console.log("------------------------------------------------")
            }
         })
         .catch(function(error){
@@ -121,3 +125,19 @@ function concertThis() {
         })
 
 };
+
+function doWhatItSays() {
+    fs.readFile("random.txt", "utf8", function(error, data){
+        if (error) {
+            console.log(error);
+        } else {
+
+            let randomData = data.split(",");
+            let mediaName = randomData[1].replace(/^"(.+(?="$))"$/, '$1');
+            spotifyThis(mediaName);
+
+            
+            
+        }
+    })
+}
