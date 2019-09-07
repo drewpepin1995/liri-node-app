@@ -35,15 +35,20 @@ switch (liriReturn) {
 };
 
 function spotifyThis(trackName) {
-    var trackName = process.argv.slice(3, process.argv.length).join(" ")
-    console.log(trackName);
+    var trackName = process.argv.slice(3, process.argv.length).join(" ");
     spotify.search({
         type: 'track',
         query: trackName,
         limit: 5
     })
     .then(function (response){
-        console.log(response.tracks.items[1]);
+        response.tracks.items.forEach(function(number){
+            console.log(" ");
+            console.log("Artist(s): " + number.album.artists[0].name);
+            console.log("Song Name: " + number.name);
+            console.log("Spotify Preview: " + number.preview_url);
+            console.log("Album: " + number.album.name);
+        })
     })
     .catch(function(err){
         console.log("Error occurred: " + err);
