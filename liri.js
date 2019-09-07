@@ -1,26 +1,26 @@
 require("dotenv").config();
 var keys = require("./keys.js");
-var spotify = new Spotify(keys.spotify);
 var Spotify = require('node-spotify-api');
-var axios = requre('axios');
+var spotify = new Spotify(keys.spotify);
+// var axios = requre('axios');
 var liriReturn = process.argv[2];
-var infoName = process.argv[3];
+// var infoName = process.argv[3];
 
 switch (liriReturn) {
     case "spotify-this-song":
-        function spotifyThis();
+        spotifyThis();
         break;
     
     case "concert-this":
-        function concertThis();
+        concertThis();
         break;
 
     case "movie-this":
-        function moviesThis();
+        moviesThis();
         break;
     
     case "do-what-it-says":
-        function doWhatItSays();
+        doWhatItSays();
         break;
 
     default: console.log("\nType any of these commands after 'node liri.js' : " +
@@ -29,4 +29,19 @@ switch (liriReturn) {
                             "\nconcert-this 'artist/band name here'" + 
                             "\ndo-what-it-says");
     
+};
+
+function spotifyThis(trackName) {
+    var trackName = process.argv[3];
+    spotify.search({
+        type: 'track',
+        query: trackName,
+        limit: 5
+    })
+    .then(function (response){
+        console.log(response);
+    })
+    .catch(function(err){
+        console.log("Error occurred: " + err);
+    });
 };
