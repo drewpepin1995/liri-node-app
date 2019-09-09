@@ -5,7 +5,7 @@
 
 ## Demo
 
-![video](./demo.mov)
+https://youtu.be/2BfKmUzv6mI
 
 ## About the App
 Liri takes in information from the command line that the user can change, and gives back data. The user has the option to utilize 4 commands. 
