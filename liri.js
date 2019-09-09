@@ -7,8 +7,8 @@ let spotify = new Spotify({
 });
 let axios = require('axios');
 let liriReturn = process.argv[2];
-var moment = require('moment');
-var fs = require('fs');
+let moment = require('moment');
+let fs = require('fs');
 let inputParameter = process.argv.slice(3, process.argv.length).join(" ");
 
 userInput(liriReturn, inputParameter);
@@ -43,7 +43,7 @@ function userInput(liriReturn, inputParameter) {
 function spotifyThis(inputParameter) {
 
     if (!inputParameter) {
-        inputParameter === 'The Sign';
+        inputParameter = 'The Sign';
     }
 
     spotify.search({
@@ -121,7 +121,7 @@ function concertThis(inputParameter) {
 
     axios.get(queryURL)
         .then(function (response) {
-            for (var i = 0; i < response.data.length; i++) {
+            for (let i = 0; i < response.data.length; i++) {
                 console.log("Concert Time: " + moment(response.data[i].datetime, "YYYY-MM-DDTHH:mm:ss").format('MM/DD/YYYY'));
                 console.log("Concert Location: " + response.data[i].venue.city + ", " + response.data[i].venue.region);
                 console.log("Concert Venue: " + response.data[i].venue.name);
