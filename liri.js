@@ -11,34 +11,6 @@ let moment = require('moment');
 let fs = require('fs');
 let inputParameter = process.argv.slice(3, process.argv.length).join(" ");
 
-userInput(liriReturn, inputParameter);
-
-function userInput(liriReturn, inputParameter) {
-    switch (liriReturn) {
-        case "spotify-this-song":
-            spotifyThis(inputParameter);
-            break;
-
-        case "concert-this":
-            concertThis(inputParameter);
-            break;
-
-        case "movie-this":
-            moviesThis(inputParameter);
-            break;
-
-        case "do-what-it-says":
-            doWhatItSays();
-            break;
-
-        default: console.log("\nType any of these commands after 'node liri.js' : " +
-            "\nspotify-this-song 'any song title here'" +
-            "\nmovie-this 'any movie title here'" +
-            "\nconcert-this 'artist/band name here'" +
-            "\ndo-what-it-says");
-
-    };
-};
 
 function spotifyThis(inputParameter) {
 
@@ -148,3 +120,32 @@ function doWhatItSays() {
         }
     })
 }
+
+userInput(liriReturn, inputParameter);
+
+function userInput(liriReturn, inputParameter) {
+    switch (liriReturn) {
+        case "spotify-this-song":
+            spotifyThis(inputParameter);
+            break;
+
+        case "concert-this":
+            concertThis(inputParameter);
+            break;
+
+        case "movie-this":
+            moviesThis(inputParameter);
+            break;
+
+        case "do-what-it-says":
+            doWhatItSays();
+            break;
+
+        default: console.log("\nType any of these commands after 'node liri.js' : " +
+            "\nspotify-this-song 'any song title here'" +
+            "\nmovie-this 'any movie title here'" +
+            "\nconcert-this 'artist/band name here'" +
+            "\ndo-what-it-says");
+
+    };
+};
